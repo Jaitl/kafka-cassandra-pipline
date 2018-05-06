@@ -20,6 +20,10 @@ subprojects {
         // scala
         compile "org.scala-lang:scala-library:${scalaVersion}"
         compile "org.scala-lang:scala-compiler:${scalaVersion}"
+
+        // logger
+        compile "ch.qos.logback:logback-classic:1.2.3"
+        compile "com.typesafe.scala-logging:scala-logging_${scalaMajorVersion}:3.7.2"
     }
 
     tasks.withType(JavaExec) {
@@ -38,5 +42,6 @@ project(":models") {
 project(":kafka-producer-consumer") {
     dependencies {
         compile project(":models")
+        compile "org.apache.kafka:kafka_${scalaMajorVersion}:1.1.0"
     }
 }
