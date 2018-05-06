@@ -10,6 +10,14 @@ services:
     ports:
       - "9092:9092"
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
-      KAFKA_CREATE_TOPICS: "string-data:1:1"
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      - KAFKA_ADVERTISED_HOST_NAME=127.0.0.1
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+  cassandra:
+      image: cassandra:3.11
+      command: bash -c 'if [ -z "$$(ls -A /var/lib/cassandra/)" ] ; then sleep 0; fi && /docker-entrypoint.sh cassandra -f'
+      environment:
+        - LOCAL_JMX=no
+        - CASSANDRA_CLUSTER_NAME=local_cluster
+        - CASSANDRA_DC=local_dc
+      ports:
+          - 0.0.0.0:9042:9042

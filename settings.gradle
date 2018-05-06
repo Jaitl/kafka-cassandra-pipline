@@ -1,5 +1,6 @@
 include 'models'
 include 'kafka-producer-consumer'
 include 'kafka-streaming'
+include 'kafka-cassandra'
 
 rootProject.name = 'kafka-cassandra-pipline'

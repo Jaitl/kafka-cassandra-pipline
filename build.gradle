@@ -59,10 +59,12 @@ project(":kafka-streaming") {
         compile project(":models")
         compile "org.apache.kafka:kafka-clients:1.1.0"
         compile "org.apache.kafka:kafka-streams:1.1.0"
+    }
+}
 
-        compile "com.ovoenergy:kafka-serialization-core_${scalaMajorVersion}:0.1.23"
-        compile "com.ovoenergy:kafka-serialization-circe_${scalaMajorVersion}:0.1.23"
-        compile "io.circe:circe-core_${scalaMajorVersion}:0.8.0"
-        compile "io.circe:circe-generic_${scalaMajorVersion}:0.8.0"
+project(":kafka-cassandra") {
+    dependencies {
+        compile "org.apache.kafka:kafka-clients:1.1.0"
+        compile "com.datastax.cassandra:cassandra-driver-mapping:3.2.0"
     }
 }
