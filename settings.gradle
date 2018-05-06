@@ -1,0 +1,4 @@
+include 'models'
+include 'kafka-producer-consumer'
+
+rootProject.name = 'kafka-cassandra-pipline'

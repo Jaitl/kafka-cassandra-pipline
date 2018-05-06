@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+def scalaMajorVersion = "2.12"
+def scalaVersion = "${scalaMajorVersion}.5"
+
+subprojects {
+    apply plugin: 'scala'
+
+    dependencies {
+        // scala
+        compile "org.scala-lang:scala-library:${scalaVersion}"
+        compile "org.scala-lang:scala-compiler:${scalaVersion}"
+    }
+
+    tasks.withType(JavaExec) {
+        systemProperties System.properties
+    }
+
+    tasks.withType(ScalaCompile) {
+        scalaCompileOptions.additionalParameters = ["-unchecked", "-deprecation", "-feature", "-Xfatal-warnings"]
+    }
+}
+
+project(":models") {
+
+}
+
+project(":kafka-producer-consumer") {
+    dependencies {
+        compile project(":models")
+    }
+}
