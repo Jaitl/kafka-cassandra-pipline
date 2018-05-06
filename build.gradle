@@ -6,6 +6,9 @@ buildscript {
 
 allprojects {
     repositories {
+        maven {
+            url "https://dl.bintray.com/ovotech/maven/"
+        }
         jcenter()
     }
 }
@@ -42,6 +45,24 @@ project(":models") {
 project(":kafka-producer-consumer") {
     dependencies {
         compile project(":models")
-        compile "org.apache.kafka:kafka_${scalaMajorVersion}:1.1.0"
+        compile "org.apache.kafka:kafka-clients:1.1.0"
+
+        compile "com.ovoenergy:kafka-serialization-core_${scalaMajorVersion}:0.1.23"
+        compile "com.ovoenergy:kafka-serialization-circe_${scalaMajorVersion}:0.1.23"
+        compile "io.circe:circe-core_${scalaMajorVersion}:0.8.0"
+        compile "io.circe:circe-generic_${scalaMajorVersion}:0.8.0"
+    }
+}
+
+project(":kafka-streaming") {
+    dependencies {
+        compile project(":models")
+        compile "org.apache.kafka:kafka-clients:1.1.0"
+        compile "org.apache.kafka:kafka-streams:1.1.0"
+
+        compile "com.ovoenergy:kafka-serialization-core_${scalaMajorVersion}:0.1.23"
+        compile "com.ovoenergy:kafka-serialization-circe_${scalaMajorVersion}:0.1.23"
+        compile "io.circe:circe-core_${scalaMajorVersion}:0.8.0"
+        compile "io.circe:circe-generic_${scalaMajorVersion}:0.8.0"
     }
 }
